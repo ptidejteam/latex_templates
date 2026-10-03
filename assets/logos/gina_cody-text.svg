@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2110" height="590" viewBox="28 52 2110 590">
+  <title>Gina Cody School of Engineering and Computer Science</title>
+  <desc>Editable text reconstruction of the supplied wordmark. See README.md for vector exports.</desc>
+  <g font-family="Gill Sans" text-anchor="start">
+    <text id="name" x="31" y="230" font-size="250" font-weight="400" letter-spacing="13.7" word-spacing="5" fill="#980027">GINA CODY</text>
+    <g font-size="160" font-weight="600" fill="#000000">
+      <text id="school" x="31" y="430">SCHOOL OF ENGINEERING</text>
+      <text id="discipline" x="31" y="632">AND COMPUTER SCIENCE</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,100 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeTemplatePoster}[2026/10/03 Template portrait poster layout]
+\RequirePackage{beamerCommon}
+
+% Load beamerposter before this theme. Its size option scales the fonts.
+% All page dimensions below scale with A0/A1; no second layout is needed.
+% 1. POSTER SPACING --------------------------------------------------------
+\newlength{\templatePosterMargin}
+\newlength{\templatePosterGap}
+\newlength{\templatePosterColumnWidth}
+\newlength{\templatePosterBlockGap}
+\newlength{\templatePosterBlockPadding}
+\setlength{\templatePosterMargin}{0.03\paperwidth}
+\setlength{\templatePosterGap}{0.025\paperwidth}
+\setlength{\templatePosterColumnWidth}{%
+  \dimexpr(\paperwidth-2\templatePosterMargin-\templatePosterGap)/2\relax}
+\setlength{\templatePosterBlockGap}{0.012\paperheight}
+\setlength{\templatePosterBlockPadding}{0.007\paperwidth}
+\setbeamersize{text margin left=\templatePosterMargin,
+  text margin right=\templatePosterMargin}
+
+% Same font family and hierarchy; sizes come from beamerposter's scale.
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{metric}{size=\LARGE}
+\setbeamerfont{caption}{size=\small}
+\setbeamerfont{source}{size=\footnotesize}
+\AtBeginDocument{%
+  \setlength{\tabcolsep}{0.65em}%
+  \renewcommand{\arraystretch}{1.15}%
+}
+\setlength{\templateBoxPadding}{0.006\paperwidth}
+\setlength{\templateFigureHeight}{0.18\paperheight}
+% Scale listing decorations too, if code is added to a fragile poster frame.
+\lstset{framesep=0.5em,numbersep=0.5em,xleftmargin=0.5em,
+  xrightmargin=0.5em,framerule=0.025em}
+
+% 2. POSTER BLOCK PADDING --------------------------------------------------
+% A minipage gives paragraphs, lists, tables, and figures the same inner width.
+% Colour and font definitions still come from the shared style. One layout
+% serves native block/exampleblock/alertblock and the colour-parameter helper.
+\newcommand{\templatePosterBlockBegin}[2]{%
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[wd=\linewidth,sep=\templatePosterBlockPadding]{#1}
+    \usebeamerfont{block title}\strut\insertblocktitle\strut\par
+  \end{beamercolorbox}%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\linewidth,sep=0pt]{#2}
+    \hspace*{\templatePosterBlockPadding}%
+    \begin{minipage}{\dimexpr\linewidth-2\templatePosterBlockPadding\relax}
+      \usebeamerfont{block body}\raggedright
+      \vspace*{\templatePosterBlockPadding}
+}
+\newcommand{\templatePosterBlockEnd}{%
+      \par\vspace*{\templatePosterBlockPadding}
+    \end{minipage}%
+    \par
+  \end{beamercolorbox}%
+  \vskip\smallskipamount
+}
+\setbeamertemplate{block begin}{\templatePosterBlockBegin{block title}{block body}}
+\setbeamertemplate{block end}{\templatePosterBlockEnd}
+\setbeamertemplate{block example begin}{\templatePosterBlockBegin{block title example}{block body example}}
+\setbeamertemplate{block example end}{\templatePosterBlockEnd}
+\setbeamertemplate{block alerted begin}{\templatePosterBlockBegin{block title alerted}{block body alerted}}
+\setbeamertemplate{block alerted end}{\templatePosterBlockEnd}
+
+% 3. HEADER ---------------------------------------------------------------
+% Standard metadata commands supply the header; no separate title frame.
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{frametitle}{}
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0pt]{normal text}
+    \hspace*{\templatePosterMargin}%
+    \begin{minipage}{\dimexpr\paperwidth-2\templatePosterMargin\relax}
+      \vspace*{\templatePosterMargin}
+      \raggedright
+      \ifx\inserttitlegraphic\@empty\else
+        {\normalsize\inserttitlegraphic\par}
+        \vspace{0.012\paperheight}
+      \fi
+      \centering
+      {\usebeamerfont{title}\color{templatePrimary}\inserttitle\par}
+      \vspace{0.007\paperheight}
+      {\usebeamerfont{author}\insertauthor\par}
+      \vspace{0.003\paperheight}
+      {\usebeamerfont{institute}\insertinstitute\par}
+      \vspace{0.003\paperheight}
+      {\usebeamerfont{date}\color{templateMuted}\insertdate\par}
+      \vspace{0.012\paperheight}
+      {\color{templatePrimary!30!templatePaper}\hrule height 0.0006\paperwidth}
+      \vspace{0.009\paperheight}
+    \end{minipage}%
+    \par
+  \end{beamercolorbox}%
+}

@@ -1,0 +1,113 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeTemplate}[2026/10/03 Template slide layouts]
+\RequirePackage{beamerCommon}
+
+% Colours, fonts, blocks, and helpers are shared in beamerCommon.sty.
+% 1. SLIDE SPACING ----------------------------------------------------------------
+\newlength{\templateMargin}
+\newlength{\templateTitleGap}
+\newlength{\templateSectionWidth}
+\newlength{\templateLogoBarHeight}
+\newlength{\templateTopInset}
+\newlength{\templateFooterInset}
+\setlength{\templateMargin}{10mm}
+\setlength{\templateTitleGap}{3mm}
+\setlength{\templateSectionWidth}{28mm}
+\setlength{\templateLogoBarHeight}{16mm}
+\setlength{\templateTopInset}{5mm}
+\setlength{\templateFooterInset}{5mm}
+\setbeamersize{text margin left=\templateMargin,text margin right=\templateMargin}
+
+% 2. SLIDE LAYOUTS ----------------------------------------------
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3mm,dp=\templateFooterInset,rightskip=\templateMargin]{page number in head/foot}
+    \hfill\fontsize{7}{8.5}\selectfont
+    \insertframenumber\,/\,\inserttotalframenumber
+  \end{beamercolorbox}%
+}
+\setbeamertemplate{sidebar right}{}
+
+% The title wraps naturally. A short section name keeps the index compact.
+% Beamer's own counters need two passes; no custom navigation data is stored.
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \vskip\templateTopInset
+  \begin{beamercolorbox}[wd=\textwidth,sep=0pt]{frametitle}
+    \hbox to \textwidth{%
+      \hskip4mm % Preserve the title's original position, without the accent bar.
+      \begin{minipage}[b]{\dimexpr\textwidth-\templateSectionWidth-9mm\relax}
+        \raggedright
+        {\usebeamerfont{frametitle}\strut\insertframetitle\strut\par}%
+        \ifx\insertframesubtitle\@empty\else
+          {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+            \insertframesubtitle\strut\par}%
+        \fi
+      \end{minipage}%
+      \hfill
+      \begin{minipage}[b]{\templateSectionWidth}
+        \raggedleft\fontsize{7}{8.5}\selectfont
+        \ifnum\value{section}>0
+          \insertsectionhead\strut\par
+        \fi
+      \end{minipage}%
+    }%
+    \par\vskip2mm
+    {\color{templatePrimary!30!templatePaper}\hrule height 0.4pt}%
+  \end{beamercolorbox}
+  \vskip\templateTitleGap
+}
+
+% Use \maketitle outside a frame. The group confines the cover colours and
+% logo strip to that frame. \titlegraphic supplies the editable logo row.
+\renewcommand{\maketitle}{%
+  \begingroup
+    \setbeamercolor{background canvas}{bg=templatePrimary}
+    \setbeamertemplate{background}{%
+      \begingroup
+        \setlength{\fboxsep}{0pt}%
+        \colorbox{white}{\hbox to \paperwidth{%
+          \hskip\templateMargin
+          \begin{minipage}[c][\templateLogoBarHeight][c]{\dimexpr\paperwidth-2\templateMargin\relax}
+            \color{templateInk}\inserttitlegraphic
+          \end{minipage}%
+          \hskip\templateMargin
+        }}%
+      \endgroup
+    }%
+    \begin{frame}[plain,noframenumbering]
+      \titlepage
+    \end{frame}
+  \endgroup
+}
+
+% The cover contains only title, authors, organisation, and date.
+\setbeamertemplate{title page}{%
+  \vspace*{\templateLogoBarHeight}
+  \vfill
+  \begin{center}
+    \begin{minipage}{0.88\textwidth}
+      \centering\color{white}
+      {\usebeamerfont{title}\inserttitle\par}
+      \vspace{8mm}
+      {\usebeamerfont{author}\insertauthor\par}
+      \vspace{2mm}
+      {\usebeamerfont{institute}\insertinstitute\par}
+      \vspace{4mm}
+      {\usebeamerfont{date}\insertdate\par}
+    \end{minipage}
+  \end{center}
+  \vfill
+}
+
+\setbeamertemplate{section page}{%
+  \vfill
+  {\color{templatePrimary}\rule{12mm}{1mm}\par}
+  \vspace{4mm}
+  {\small\color{templateMuted}SECTION \ifnum\value{section}<10 0\fi\thesection\par}
+  \vspace{2mm}
+  {\usebeamerfont{section title}\color{templatePrimary}\insertsection\par}
+  \vfill
+}
+

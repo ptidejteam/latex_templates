@@ -1,0 +1,139 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerCommon}[2026/10/03 Shared Template colours, fonts, and helpers]
+
+% Edit this file to change both templates. Layouts live in the two themes.
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{booktabs}
+\RequirePackage{listings}
+
+% 1. PALETTE ---------------------------------------------------------------
+% Research roles: gaps, answers, questions, and general highlights.
+% Original burgundy retained; other accent colours from:
+% https://www.concordia.ca/web/design/ui-kit-style-guide-accessibility/web-palette-new.html
+\definecolor{burgundy}{HTML}{7A003C}
+\definecolor{orange}{HTML}{DA3A16}
+\definecolor{turquoise}{HTML}{057D78}
+\definecolor{darkblue}{HTML}{004085}
+% Theme aliases keep the cover, headings, and helpers consistent.
+\colorlet{templatePrimary}{burgundy}
+\colorlet{templateSecondary}{turquoise}
+\definecolor{templateInk}{HTML}{222222}
+\definecolor{templateMuted}{HTML}{666666}
+\definecolor{templatePaper}{HTML}{FFFFFF}
+
+\setbeamercolor{normal text}{fg=templateInk,bg=templatePaper}
+\setbeamercolor{background canvas}{bg=templatePaper}
+\setbeamercolor{structure}{fg=templatePrimary}
+\setbeamercolor{alerted text}{fg=templatePrimary}
+\setbeamercolor{title}{fg=templatePrimary}
+\setbeamercolor{subtitle}{fg=templateInk}
+\setbeamercolor{frametitle}{fg=templatePrimary,bg=templatePaper}
+\setbeamercolor{framesubtitle}{fg=templateMuted}
+\setbeamercolor{section in toc}{fg=templateInk}
+\setbeamercolor{block title}{fg=templatePaper,bg=templatePrimary}
+\setbeamercolor{block body}{fg=templateInk,bg=templatePrimary!6!templatePaper}
+\setbeamercolor{block title example}{fg=templatePaper,bg=templateSecondary}
+\setbeamercolor{block body example}{fg=templateInk,bg=templateSecondary!6!templatePaper}
+\setbeamercolor{block title alerted}{fg=white,bg=orange}
+\setbeamercolor{block body alerted}{fg=templateInk,bg=orange!6!templatePaper}
+\setbeamercolor{takeaway}{fg=templatePrimary,bg=templatePrimary!6!templatePaper}
+\setbeamercolor{placeholder}{fg=templateMuted,bg=templateInk!5!templatePaper}
+\setbeamercolor{page number in head/foot}{fg=templateMuted,bg=templatePaper}
+
+% 2. TYPE ------------------------------------------------------------------
+% The base size (11pt by default) belongs in the documentclass in slides.tex.
+\usefonttheme{professionalfonts}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large,series=\mdseries}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{frametitle}{size=\Large,series=\mdseries}
+\setbeamerfont{framesubtitle}{size=\small}
+\setbeamerfont{section title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamerfont{footnote}{size=\scriptsize}
+\setbeamerfont{takeaway}{size=\normalsize}
+\setbeamerfont{source}{size=\scriptsize}
+
+% Helper defaults retain the slide appearance; the poster theme scales them.
+\setbeamerfont{metric}{size*={24}{27},series=\bfseries}
+\newlength{\templateBoxPadding}
+\newlength{\templateFigureHeight}
+\setlength{\templateBoxPadding}{2mm}
+\setlength{\templateFigureHeight}{3.2cm}
+
+% Syntax highlighting uses listings, so no external highlighter is needed.
+% Select the language on each listing: \begin{lstlisting}[language=Java]
+\lstdefinestyle{template}{
+  basicstyle=\ttfamily\footnotesize\color{templateInk},
+  keywordstyle=\color{darkblue}\bfseries,
+  stringstyle=\color{turquoise},
+  commentstyle=\color{templateMuted}\itshape,
+  backgroundcolor=\color{templateInk!4!templatePaper},
+  frame=single,
+  rulecolor=\color{templateInk!15!templatePaper},
+  framerule=0.3pt,
+  framesep=2mm,
+  numbers=left,
+  numberstyle=\tiny\color{templateMuted},
+  numbersep=2mm,
+  stepnumber=1,
+  firstnumber=1,
+  xleftmargin=2mm,
+  xrightmargin=2mm,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  tabsize=2
+}
+\lstset{style=template}
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{blocks}[default]
+
+% 3. OPTIONAL HELPERS -------------------------------------------------------
+% All helpers fit the current \linewidth, so they also work inside columns.
+
+% One block layout, with an optional xcolor name; burgundy is the default.
+% Local grouping keeps a block's colours from affecting the next block.
+% Beamer overlays also work: \begin{colorblock}<2->[orange]{Research gap}
+\newenvironment<>{colorblock}[2][burgundy]{%
+  \begingroup
+  \setbeamercolor{block title}{fg=white,bg=#1}%
+  \setbeamercolor{block body}{fg=templateInk,bg=#1!6!templatePaper}%
+  \begin{block}#3{#2}%
+}{%
+  \end{block}%
+  \endgroup
+}
+
+\newcommand{\takeaway}[1]{%
+  \par\medskip
+  \begin{beamercolorbox}[wd=\linewidth,sep=\templateBoxPadding]{takeaway}
+    \usebeamerfont{takeaway}#1\par
+  \end{beamercolorbox}%
+}
+
+\newcommand{\source}[1]{%
+  \par\smallskip{\raggedright\usebeamerfont{source}\color{templateMuted}#1\par}%
+}
+
+\newcommand{\metric}[2]{%
+  \par{\usebeamerfont{metric}\color{templatePrimary}#1\par}%
+  \smallskip{\small #2\par}%
+}
+
+\newcommand{\figureplaceholder}[2][\templateFigureHeight]{%
+  \begin{beamercolorbox}[wd=\linewidth,center,sep=0pt]{placeholder}
+    \begin{minipage}[c][#1][c]{0.92\linewidth}
+      \centering\small #2\par
+    \end{minipage}%
+  \end{beamercolorbox}%
+}

@@ -1,0 +1,619 @@
+% TEMPLATE: EDIT THIS FILE
+% Build with `make slides` or Cmd+Shift+B in VS Code; open slides.pdf.
+% This document is both a visual tutorial and a collection of reusable frames.
+% Find a layout in the PDF, search its title here, copy the complete frame,
+% and replace its content. Delete tutorial frames you do not need.
+% Frames displaying literal code use [fragile]. Ordinary slides do not need it.
+% In a verbatim example, append a comment to a literal \end{frame} line
+% so Beamer does not mistake it for the end of the surrounding tutorial frame.
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Template}
+
+% 1. YOUR COVER ------------------------------------------------------------
+\title{Template: a visual guide}
+\author{Your name}
+\institute{Your team or organisation}
+\date{Presentation date}
+
+% Replace these paths with your logos, or remove this block for an empty strip.
+% Missing logo files do not prevent compilation. Use PNG, JPG, or PDF.
+\titlegraphic{%
+  \IfFileExists{assets/logos/concordia_1.pdf}{%
+    \includegraphics[width=0.52\linewidth,height=10mm,keepaspectratio]{assets/logos/concordia_1.pdf}%
+  }{}%
+  \hfill
+  \IfFileExists{assets/logos/gina_cody-wordmark.pdf}{%
+    \includegraphics[width=0.30\linewidth,height=10mm,keepaspectratio]{assets/logos/gina_cody-wordmark.pdf}%
+  }{}%
+}
+
+% Optional settings: uncomment before compiling.
+% \setbeameroption{show notes}              % Include your speaker notes.
+% \setbeamertemplate{note page}[plain]      % Simple notes without a heading.
+% For a handout, add `handout` to the documentclass options above.
+% For 4:3 slides, change aspectratio=169 to aspectratio=43 and review the layout.
+
+\begin{document}
+\maketitle
+\note{Welcome. This PDF explains the layouts that you can copy from slides.tex.}
+
+% 2. START HERE ------------------------------------------------------------
+\section{Start here}
+
+\begin{frame}{How to use this file}
+  \begin{enumerate}
+    \item Browse this PDF to find the layout you want.
+    \item Search for that slide title in \texttt{slides.tex}.
+    \item Copy its complete \texttt{frame}, then replace the content.
+    \item Delete the tutorial slides and compile your presentation.
+  \end{enumerate}
+  \takeaway{One source file contains the guide and every example.}
+  \source{Build locally with \texttt{make} or the VS Code build task.\newline
+    In Overleaf, select \texttt{slides.tex} and the pdfLaTeX compiler.}
+\end{frame}
+
+\begin{frame}[fragile]{Cover fields}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.46\textwidth}
+      The four fields above the document set the cover text.
+      \medskip
+
+      Use \verb|\and| between authors. The organisation belongs in
+      \verb|\institute|.
+      \medskip
+
+      Call \verb|\maketitle| outside a frame. It creates the burgundy cover
+      and excludes it from the slide count.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \small
+\begin{verbatim}
+\title{Your project title}
+\author{Alex Lee \and Sam Chen}
+\institute{Your organisation}
+\date{3 October 2026}
+
+\begin{document}
+\maketitle
+% Your frames go here.
+\end{document}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Cover logos}
+  Replace the \verb|\titlegraphic| block near the top of this file.
+  Keep the image height smaller than the white strip (16\,mm).
+  \medskip
+  {\small
+\begin{verbatim}
+\titlegraphic{%
+  \includegraphics[width=0.52\linewidth,height=10mm,
+    keepaspectratio]{assets/left-logo.png}%
+  \hfill
+  \includegraphics[width=0.30\linewidth,height=10mm,
+    keepaspectratio]{assets/right-logo.png}%
+}
+\end{verbatim}
+  }
+  \source{Use your own files at these paths. Keep only one image for a single
+    logo, or remove the block for an empty strip. The supplied starter checks
+    for missing files with \texttt{\textbackslash IfFileExists}.}
+\end{frame}
+
+\begin{frame}[fragile]{Contents and sections}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.40\textwidth}
+      \tableofcontents[hideallsubsections]
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \small
+      Sections populate the contents and the header. A section command
+      does not create a slide.
+\begin{verbatim}
+\section[Short name]{Full name}
+\begin{frame}{Contents}
+  \tableofcontents
+\end{frame} % End slide
+\end{verbatim}
+      An optional divider:
+\begin{verbatim}
+\begin{frame}[plain,noframenumbering]
+  \sectionpage
+\end{frame} % End slide
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 3. LAYOUTS ---------------------------------------------------------------
+\section{Layouts}
+
+\begin{frame}[fragile]{One clear idea}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      A short sentence establishes the context.
+      \begin{itemize}
+        \item Explain the problem.
+        \item Introduce the evidence.
+      \end{itemize}
+      \takeaway{State the main point.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small
+\begin{verbatim}
+\begin{frame}{Your slide title}
+  A short opening sentence.
+  \begin{itemize}
+    \item Explain the problem.
+    \item Introduce the evidence.
+  \end{itemize}
+  \takeaway{State the main point.}
+\end{frame} % End slide
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Two columns}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \textbf{Text beside another element}
+      \medskip
+
+      Use columns for a comparison, a figure with commentary, or a
+      worked example beside its code.
+      \medskip
+
+      Widths that add up to less than 1 leave a gutter. Inside a column,
+      \verb|\linewidth| is the column width.
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small
+\begin{verbatim}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.44\textwidth}
+    Left-hand content.
+  \end{column}
+  \begin{column}{0.50\textwidth}
+    Right-hand content.
+  \end{column}
+\end{columns}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% All four blocks share the same layout; only the optional colour changes.
+% This example uses a hypothetical research narrative, not reported findings.
+\begin{frame}{Colour by research purpose}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+      \begin{colorblock}[orange]{Problem / Research gap}
+        Existing evaluations use data from a single site.
+      \end{colorblock}
+      \begin{colorblock}[turquoise]{Solution / Answer}
+        Evaluate on a held-out site using the same protocol.
+      \end{colorblock}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{colorblock}[darkblue]{Research question / Goal}
+        Does the method work at an unseen site?
+      \end{colorblock}
+      \begin{colorblock}{Key finding / Takeaway}
+        State the supported result and its main limitation.
+      \end{colorblock}
+    \end{column}
+  \end{columns}
+  \source{Illustrative research narrative. Use burgundy for general highlights,
+    key findings, takeaways, and conclusions.}
+\end{frame}
+
+\begin{frame}[fragile]{One block, four colours}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{colorblock}[orange]{Problem}
+        Describe what is missing.
+      \end{colorblock}
+      \begin{colorblock}{Key finding}
+        State the main result.
+      \end{colorblock}
+      \small
+      Choose \texttt{orange}, \texttt{turquoise}, \texttt{darkblue},
+      or \texttt{burgundy}. Omit the colour for burgundy.
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small
+\begin{verbatim}
+\begin{colorblock}[orange]{Problem}
+  Describe what is missing.
+\end{colorblock}
+
+\begin{colorblock}{Key finding}
+  State the main result.
+\end{colorblock}
+\end{verbatim}
+      \source{The colour changes only this block. Keep the title descriptive
+        so readers can understand its role without relying on colour.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Copy this frame for source code. [fragile] is required for lstlisting.
+% Change language=Java for another language supported by listings.
+% The shared highlighting style lives in beamerCommon.sty.
+\begin{frame}[fragile]{Java code with highlighting}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.56\textwidth}
+\begin{lstlisting}[language=Java]
+public class Hello {
+  public static void main(String[] args) {
+    // A short greeting
+    String name = "Ada";
+    System.out.println("Hello, " + name);
+  }
+}
+\end{lstlisting}
+      \source{Output: \texttt{Hello, Ada}}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \small
+      Use a \texttt{[fragile]} frame and place your code inside:
+      {\scriptsize
+\begin{verbatim}
+\begin{lstlisting}[language=Java]
+// Paste your Java code here.
+\end{lstlisting}
+\end{verbatim}
+      }
+      \medskip
+      \textcolor{darkblue}{\textbf{Keywords}},
+      \textcolor{turquoise}{strings}, and
+      \textcolor{templateMuted}{\textit{comments}} have distinct styles.
+      \medskip
+
+      Change the \texttt{language} option to highlight another language.
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+% 4. EVIDENCE --------------------------------------------------------------
+\section{Evidence}
+
+% This is the actual divider demonstrated on the contents slide.
+% Both options are intentional: plain hides the footer; noframenumbering
+% excludes the divider from the total.
+\begin{frame}[plain,noframenumbering]
+  \sectionpage
+\end{frame}
+
+\begin{frame}[fragile]{A figure with commentary}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.52\textwidth}
+      \figureplaceholder[3.1cm]{Your chart, photograph, or diagram}
+      \source{A caption or credit belongs beside its figure.}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \small
+      Replace the placeholder with:
+\begin{verbatim}
+\includegraphics[
+  width=\linewidth,
+  height=3.1cm,
+  keepaspectratio
+]{assets/figure.pdf}
+\source{Caption and credit.}
+\end{verbatim}
+      \source{Use PDF, PNG, or JPG. The width and height are limits;
+        \texttt{keepaspectratio} prevents stretching.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{A figure across the slide}
+  \figureplaceholder[2.8cm]{A wide figure}
+  \source{A concise caption helps the audience read the figure.}
+  \medskip
+  {\small
+\begin{verbatim}
+\figureplaceholder[2.8cm]{A wide figure}
+\source{A concise caption.}
+\end{verbatim}
+  }
+  % For a real figure, replace the placeholder with:
+  % \includegraphics[width=\linewidth,height=4cm,keepaspectratio]{assets/figure.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Key numbers}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.28\textwidth}
+      \metric{120}{Observations}
+    \end{column}
+    \begin{column}{0.28\textwidth}
+      \metric{18\%}{Relative change}
+    \end{column}
+    \begin{column}{0.28\textwidth}
+      \metric{4}{Study groups}
+    \end{column}
+  \end{columns}
+  \bigskip
+  \takeaway{Explain what the measures establish.}
+  \medskip
+  {\small
+\begin{verbatim}
+\metric{120}{Observations}   % Put each metric in a column.
+\takeaway{Explain what the measures establish.}
+\end{verbatim}
+  }
+  \source{Illustrative values only. Replace with your own evidence and units.}
+\end{frame}
+
+\begin{frame}[fragile]{A compact table}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.40\textwidth}
+      \begin{tabular}{@{}lr@{}}
+        \toprule
+        \textbf{Method} & \textbf{Score} \\
+        \midrule
+        Baseline & 0.72 \\
+        Alternative & \alert{0.83} \\
+        \bottomrule
+      \end{tabular}
+      \medskip
+      \source{Illustrative values only.}
+      \medskip
+      \small The theme includes \texttt{booktabs} for clean horizontal rules.
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \small
+\begin{verbatim}
+\begin{tabular}{@{}lr@{}}
+  \toprule
+  \textbf{Method} & \textbf{Score} \\
+  \midrule
+  Baseline & 0.72 \\
+  Alternative & \alert{0.83} \\
+  \bottomrule
+\end{tabular}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{An equation with context}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.42\textwidth}
+      \[
+        \hat{y} = \alert{\beta_0} + \beta_1 x
+      \]
+      \begin{description}
+        \item[$x$] An observed input
+        \item[$\hat{y}$] A predicted response
+      \end{description}
+      \source{A simple model for demonstration.}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \small
+\begin{verbatim}
+\[
+  \hat{y} = \alert{\beta_0}
+    + \beta_1 x
+\]
+\begin{description}
+  \item[$x$] An observed input
+  \item[$\hat{y}$] A predicted response
+\end{description}
+\end{verbatim}
+      \source{Ordinary LaTeX math works here. Beamer supplies AMS math support.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Sources and references}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.43\textwidth}
+      Add a credit next to the material it describes, or cite a numbered
+      reference~\cite{demo}.
+      \source{Source: your dataset, author, year.}
+      \medskip
+      {\footnotesize
+      \begin{thebibliography}{9}
+        \bibitem{demo} Author Name.
+          \emph{Work title}. Venue, year.
+      \end{thebibliography}
+      }
+      \source{This is a placeholder reference.}
+    \end{column}
+    \begin{column}{0.51\textwidth}
+      \scriptsize
+\begin{verbatim}
+\source{Source: author, year.}
+A claim~\cite{demo}.
+
+\begin{thebibliography}{9}
+  \bibitem{demo} Author Name.
+    \emph{Work title}. Venue, year.
+\end{thebibliography}
+\end{verbatim}
+      \source{Compile twice to resolve citations. No separate bibliography
+        file or processor is needed.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% 5. PRESENTING ------------------------------------------------------------
+\section{Presenting}
+
+% This example creates three PDF pages but counts as one frame.
+\begin{frame}[fragile]{Gradual reveals}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.42\textwidth}
+      \begin{enumerate}[<+->]
+        \item State the question.
+        \item Show the evidence.
+        \item Give the conclusion.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \small
+\begin{verbatim}
+\begin{enumerate}[<+->]
+  \item State the question.
+  \item Show the evidence.
+  \item Give the conclusion.
+\end{enumerate}
+\end{verbatim}
+      \source{This example uses three PDF pages. The frame
+        number stays the same. Add \texttt{handout} to the document class
+        options to combine the reveals into one page.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Speaker notes}
+  Add a note inside any frame, or immediately after \verb|\maketitle|:
+  \medskip
+  {\small
+\begin{verbatim}
+\note{Explain why this choice matters to the audience.}
+\end{verbatim}
+  }
+  \medskip
+  Notes are hidden by default. To include them, add these lines before
+  \verb|\begin{document}|:
+  {\small
+\begin{verbatim}
+\setbeameroption{show notes}
+\setbeamertemplate{note page}[plain]
+\end{verbatim}
+  }
+  \source{Use \texttt{show only notes} for a notes-only PDF, or remove the
+    option to return to the normal presentation.}
+  \note{This is an actual speaker note. Enable show notes near the top of the file to see it.}
+\end{frame}
+
+\begin{frame}[fragile]{A simple work plan}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{description}
+        \item[Phase 1] Prepare the inputs.
+        \item[Phase 2] Test the method.
+        \item[Phase 3] Share the findings.
+      \end{description}
+      \takeaway{Name the next milestone.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small
+\begin{verbatim}
+\begin{description}
+  \item[Phase 1] Prepare the inputs.
+  \item[Phase 2] Test the method.
+  \item[Phase 3] Share the findings.
+\end{description}
+\takeaway{Name the next milestone.}
+\end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Copy this entire frame as a closing slide; replace its text and contact.
+\begin{frame}{A closing slide}
+  \noindent{\large\color{templatePrimary}Your main conclusion in one sentence}
+  \bigskip
+
+  State the next step or the feedback you want from the audience.
+  \vfill
+  \textbf{Questions and discussion}
+  \source{Your name \quad\texttt{you@example.org}}
+\end{frame}
+
+% 6. THEME AND TROUBLESHOOTING ---------------------------------------------
+\section{Theme}
+
+\begin{frame}[fragile]{Colours}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \small
+      \begin{tabular}{@{}ll@{}}
+        \textcolor{orange}{Orange} & \texttt{DA3A16} \\
+        \textcolor{turquoise}{Turquoise} & \texttt{057D78} \\
+        \textcolor{darkblue}{Dark blue} & \texttt{004085} \\
+        \textcolor{burgundy}{Burgundy} & \texttt{7A003C} \\
+        \midrule
+        Ink & \texttt{222222} \\
+        Muted text & \texttt{666666} \\
+        Paper & \texttt{FFFFFF}
+      \end{tabular}
+      \medskip
+
+      Edit these definitions in \texttt{beamerCommon.sty}.
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \small
+      Burgundy is the default for blocks, the cover, headings, and takeaways:
+\begin{verbatim}
+\definecolor{burgundy}
+  {HTML}{7A003C}
+\end{verbatim}
+      Use six hexadecimal digits without a hash. A coloured block keeps
+      the same typography and spacing for every research role.
+      \medskip
+
+      \texttt{\textbackslash alert\{words\}} provides
+      \alert{burgundy emphasis} within a sentence.
+    \end{column}
+  \end{columns}
+  \source{Original burgundy; other accents: \href{https://www.concordia.ca/web/design/ui-kit-style-guide-accessibility/web-palette-new.html}{Concordia University web colour palette}.
+    Research categories are this template's convention.}
+\end{frame}
+
+\begin{frame}[fragile]{Spacing and typography}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.50\textwidth}
+      \small
+      \begin{tabular}{@{}lr@{}}
+        \textbf{Theme length} & \textbf{Default} \\
+        \midrule
+        \texttt{\textbackslash templateMargin} & 10\,mm \\
+        \texttt{\textbackslash templateTopInset} & 5\,mm \\
+        \texttt{\textbackslash templateFooterInset} & 5\,mm \\
+        \texttt{\textbackslash templateTitleGap} & 3\,mm \\
+        \texttt{\textbackslash templateSectionWidth} & 28\,mm \\
+        \texttt{\textbackslash templateLogoBarHeight} & 16\,mm
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \small
+      Edit lengths in \texttt{beamerthemeTemplate.sty}; fonts in \texttt{beamerCommon.sty}:
+\begin{verbatim}
+\setlength{\templateTopInset}
+  {5mm}
+\setbeamerfont{frametitle}
+  {size=\Large}
+\end{verbatim}
+      The document class sets the base size (11\,pt) and aspect ratio.
+      Shared fonts also apply to the poster.
+    \end{column}
+  \end{columns}
+  \source{After a layout change, inspect long titles, columns, and figures.
+    Shorten content before shrinking the text.}
+\end{frame}
+
+\begin{frame}[fragile]{Everyday fixes}
+  \small
+  \begin{description}
+    \item[Literal characters] Write \verb|\%|, \verb|\&|, \verb|\_|,
+      \verb|\#|, and \verb|\$| in ordinary text.
+    \item[Code on a slide] Use \verb|\begin{frame}[fragile]{Title}|.
+    \item[Long section name] Use \verb|\section[Short]{Full name}|.
+    \item[Missing totals or citations] Compile twice; \texttt{make} does this.
+    \item[Text or figures overflow] Shorten, split the slide, or reduce figure height.
+    \item[Compilation fails] Start with the first error in \texttt{slides.log}.
+  \end{description}
+  \takeaway{To create your own deck, keep the preamble and the frames you need.
+    Replace this guide's content and keep both style files beside \texttt{slides.tex}.}
+\end{frame}
+
+\end{document}

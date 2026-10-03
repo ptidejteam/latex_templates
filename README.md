@@ -9,7 +9,7 @@ Matching Beamer templates for **slides** and **research posters**, with Latin Mo
 
 **Slides:** the PDF is a visual tutorial. Find a slide you like, search for its title in `slides.tex`, copy its frame, and edit the content. Remove the tutorial frames you do not need.
 
-**Poster:** the two-column PDF is also a visual tutorial. Find a block you like, search for its title in `poster.tex`, and copy its LaTeX example or complete `colorblock`. The poster itself explains the header, paper sizes, figures, tables, colours, and shared styling. Replace the guide blocks with your research; the header appears automatically and all content stays in one frame.
+**Poster:** the two-column PDF shows finished examples: figures, a bulleted list, highlighted Java with line numbers, a table, text emphasis, references, and links. Find a block you like in `poster.tex`, copy its `colorblock`, and replace the sample content. The header appears automatically and all content stays in one frame.
 
 ## Overleaf
 
@@ -45,7 +45,7 @@ Replace `poster.tex` with `slides.tex` for slides. Required packages are Beamer,
 At the top of `poster.tex`:
 
 ```latex
-\usepackage[orientation=portrait,size=a0,scale=1.2]{beamerposter}
+\usepackage[orientation=portrait,size=a0,scale=1.32]{beamerposter}
 ```
 
 Change only `size=a0` to `size=a1` and rebuild:
@@ -55,14 +55,14 @@ Change only `size=a0` to `size=a1` and rebuild:
 | `size=a0` (default) | 841 × 1189 mm |
 | `size=a1` | 594 × 841 mm |
 
-Both use the same two-column layout. Fonts and spacing scale with the page; keep `scale=1.2` for the supplied design. These are the two supported and checked poster sizes. Print at **actual size / 100%** on the matching paper. Review both sizes after substantial content changes, and shorten overflowing content before shrinking the text.
+Both use the same two-column layout. Fonts and spacing scale with the page; keep `scale=1.32` for the supplied design. These are the two supported and checked poster sizes. Print at **actual size / 100%** on the matching paper. Review both sizes after substantial content changes, and shorten overflowing content before shrinking the text.
 
 ## Where to edit the template
 
 | File | Purpose |
 | --- | --- |
 | `slides.tex` | Slide content, visual tutorial, and copyable examples. |
-| `poster.tex` | Poster visual tutorial, size selector, and copyable examples. |
+| `poster.tex` | Editable example poster and A0/A1 size selector. |
 | `beamerCommon.sty` | Shared colours, fonts, blocks, code highlighting, and helpers. |
 | `beamerthemeTemplate.sty` | Slide margins, cover, headings, and page count. |
 | `beamerthemeTemplatePoster.sty` | Poster header, scaled typography, margins, and column spacing. |

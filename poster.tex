@@ -1,10 +1,10 @@
 % TEMPLATE: edit this file; build with `make poster`; open poster.pdf.
 \documentclass[11pt]{beamer}
-\usepackage[orientation=portrait,size=a0,scale=1.2]{beamerposter}
+\usepackage[orientation=portrait,size=a0,scale=1.32]{beamerposter}
 \usetheme{TemplatePoster}
 
 % 1. YOUR HEADER -----------------------------------------------------------
-\title{Template: a visual guide to research posters}
+\title{Template: a research poster example}
 \author{Your name \and Your collaborator}
 \institute{Your research team --- Your university or organisation}
 \date{Conference name and date}
@@ -25,169 +25,117 @@
 
     % 2. LEFT COLUMN -------------------------------------------------------
     \begin{column}{\templatePosterColumnWidth}
-      \begin{colorblock}{1. Start here: one file, one poster}
-        This poster is the tutorial. Read down the left column, then the
-        right. Every example is editable in \texttt{poster.tex}.
-        \begin{enumerate}
-          \item Find a layout here and search for its block title in the source.
-          \item Copy the complete \texttt{colorblock}; replace its content.
-          \item Replace the header and remove the guide blocks you do not need.
-        \end{enumerate}
-        \textbf{Build locally:} run \texttt{make poster} and open
-        \texttt{poster.pdf}. In VS Code, choose \textbf{Build poster} under
-        \textbf{Terminal > Run Build Task}.
-        \par\medskip
-        \textbf{Overleaf:} select \texttt{poster.tex} as the main document
-        and pdfLaTeX as the compiler. Keep the shared style, poster theme,
-        and your assets alongside the source.
+      \begin{colorblock}{1. Context and research gap}
+        Reliable comparisons depend on clear questions, consistent
+        measurements, and a shared view of the study. This example follows
+        a simple workflow from data collection to evaluation.
+        \begin{figure}
+          \figureplaceholder[0.34\linewidth]{Study overview}
+          \caption{An overview of the research context and workflow.}
+        \end{figure}
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}[darkblue]{2. Choose the size and edit the header}
-        At the top of the file, change only \texttt{size=a0} to
-        \texttt{size=a1} for the smaller format. Keep the same content,
-        two columns, and \texttt{scale=1.2}.
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\usepackage[orientation=portrait,
-  size=a0,scale=1.2]{beamerposter}
-\end{lstlisting}
-        \textbf{A0:} 841 $\times$ 1189\,mm (default).\quad
-        \textbf{A1:} 594 $\times$ 841\,mm.
-        Fonts and spacing scale with the page. Print at actual size (100\%).
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\title{Your research title}
-\author{Alex Lee \and Sam Chen}
-\institute{Your team or organisation}
-\date{Conference name and date}
-\end{lstlisting}
-        The theme prints this header automatically. Titles wrap naturally;
-        use \verb|\\| for a deliberate line break. Replace the logo paths
-        in \verb|\titlegraphic| with PNG, JPG, or PDF files. Missing logos
-        are skipped; remove that entire command to omit the logo row.
+      \begin{colorblock}{2. Research questions}
+        How can a simple approach improve the quality and efficiency of a
+        research workflow? The study has three goals:
+        \begin{itemize}
+          \item Establish a reproducible baseline.
+          \item Compare the proposed approach under the same conditions.
+          \item Identify limitations and opportunities for further study.
+        \end{itemize}
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}{3. Arrange two columns}
-        One \texttt{frame} contains the whole poster. Keep
-        \verb|[fragile,t]| on the frame when showing literal code.
-        The two equal column widths and the central gap come from the theme.
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\begin{columns}[T,onlytextwidth]
-  \begin{column}{\templatePosterColumnWidth}
-    Your left-column blocks.
-  \end{column}
-  \hfill
-  \begin{column}{\templatePosterColumnWidth}
-    Your right-column blocks.
-  \end{column}
-\end{columns}
+      \begin{colorblock}{3. Method}
+        This Java method computes the mean of a set of values.
+\begin{lstlisting}[language=Java,xleftmargin=2em]
+public static double mean(double[] values) {
+    if (values.length == 0) {
+        throw new IllegalArgumentException("No values");
+    }
+    double sum = 0.0;
+    for (double value : values) {
+        sum += value;
+    }
+    return sum / values.length;
+}
 \end{lstlisting}
-        Copy blocks within either column. Between them, keep
-        \verb|\vspace{\templatePosterBlockGap}| for consistent spacing.
-        Shorten overflowing content before reducing the font size.
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}[orange]{4. Use colour to explain the research}
-        Every block uses the same layout; its optional colour communicates
-        its purpose. Omit the colour for the burgundy default.
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\begin{colorblock}[orange]{Research gap}
-  Describe what is missing.
-\end{colorblock}
-\end{lstlisting}
-        \begin{tabular}{@{}ll@{}}
-          \textcolor{orange}{\textbf{orange}} & Problems and research gaps \\
-          \textcolor{darkblue}{\textbf{darkblue}} & Research questions and goals \\
-          \textcolor{turquoise}{\textbf{turquoise}} & Solutions and answers \\
-          \textcolor{burgundy}{\textbf{burgundy}} & Highlights and conclusions
-        \end{tabular}
+      \begin{colorblock}{4. Visual overview}
+        \figureplaceholder[0.78\linewidth]{Main research figure}
       \end{colorblock}
     \end{column}
     \hfill
 
     % 3. RIGHT COLUMN ------------------------------------------------------
     \begin{column}{\templatePosterColumnWidth}
-      \begin{colorblock}[turquoise]{5. Add figures and captions}
-        Use a placeholder while preparing a figure. Its height is a
-        fraction of the current column width, so it scales with the poster.
+      \begin{colorblock}{5. Comparison}
+        Two views show how the baseline and proposed approach differ.
+        Both use the same dataset and evaluation conditions.
         \begin{figure}
-          \figureplaceholder[0.22\linewidth]{Your research figure}
-          \caption{A short caption explains the result the reader should notice.}
+          \begin{minipage}[t]{0.48\linewidth}
+            \figureplaceholder[0.90\linewidth]{Baseline}
+            \caption{The reference approach.}
+          \end{minipage}\hfill
+          \begin{minipage}[t]{0.48\linewidth}
+            \figureplaceholder[0.90\linewidth]{Proposed approach}
+            \caption{The proposed approach.}
+          \end{minipage}
         \end{figure}
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\begin{figure}
-  \figureplaceholder[0.22\linewidth]
-    {Your research figure}
-  \caption{Explain the main result.}
-\end{figure}
-\end{lstlisting}
-        For a real figure, replace only the placeholder command:
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\includegraphics[width=\linewidth]
-  {assets/your-figure.pdf}
-\end{lstlisting}
-        Keep the \texttt{figure} and \verb|\caption|. Use vector PDFs or
-        high-resolution PNG/JPG images for printing.
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}{6. Present a compact results table}
-        The shared style includes \texttt{booktabs}. Replace these
-        illustrative values, and label your units explicitly.
-        \begin{center}
-          \begin{tabular}{@{}lr@{}}
+      \begin{colorblock}{6. Results}
+        The proposed approach achieves a higher score with a shorter run
+        time in this illustrative comparison.
+        \begin{table}
+          \centering
+          \begin{tabular}{@{}lrr@{}}
             \toprule
-            \textbf{Method} & \textbf{Score} \\
+            \textbf{Method} & \textbf{Score} & \textbf{Time (s)} \\
             \midrule
-            Baseline & 0.72 \\
-            Proposed & 0.86 \\
+            Baseline & 0.72 & 12.4 \\
+            Variant A & 0.78 & 11.6 \\
+            Variant B & 0.81 & 10.8 \\
+            \textbf{Proposed} & \textbf{0.86} & \textbf{9.7} \\
             \bottomrule
           \end{tabular}
-        \end{center}
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\begin{tabular}{@{}lr@{}}
-  \toprule
-  \textbf{Method} & \textbf{Score} \\
-  \midrule
-  Baseline & 0.72 \\
-  Proposed & 0.86 \\
-  \bottomrule
-\end{tabular}
-\end{lstlisting}
-        \source{Illustrative data only. Add the source of your actual results here.}
+          \caption{Illustrative data only; higher scores and shorter times are better.}
+        \end{table}
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}{7. Finish with a takeaway and a source}
-        \takeaway{State the one finding you want your reader to remember.}
-        \source{Author(s), title, venue, year. Reference placeholder.}
-\begin{lstlisting}[language={[LaTeX]TeX},numbers=none]
-\takeaway{Your main finding.}
-\source{Author(s), title, venue, year.}
-\end{lstlisting}
-        Use a short reference, acknowledgement, or contact line with
-        \verb|\source|. No bibliography processor is needed. For a large
-        value with a label, use \verb|\metric{86\%}{Example score}|.
+      \begin{colorblock}{7. Key findings}
+        \textbf{Main finding.} The illustrative comparison shows
+        \textcolor{turquoise}{\textbf{higher scores}} alongside shorter run
+        times. Quality and efficiency can be considered together.
+        \par\medskip
+        \textbf{Why it matters.} Meaningful comparisons use
+        \emph{the same data, budget, and evaluation rules}. A reproducible
+        baseline makes differences easier to interpret.
+        \par\medskip
+        \textbf{Next step.} Evaluate the approach on
+        \alert{larger, independent datasets} and report uncertainty
+        before drawing broader conclusions.
       \end{colorblock}
       \vspace{\templatePosterBlockGap}
 
-      \begin{colorblock}{8. Make the template your own}
-        \textbf{Content:} edit \texttt{poster.tex}.\par
-        \textbf{Shared style:} edit \texttt{beamerCommon.sty} for colours,
-        fonts, and helpers used by both slides and posters.\par
-        \textbf{Poster layout:} edit \texttt{beamerthemeTemplatePoster.sty}
-        for the header, margins, padding, and column spacing.
+      \begin{colorblock}{8. References and links}
+        [1] A. Author. \emph{Example reference on research methods}.
+        Example Journal, 2024.
         \par\medskip
-        The poster theme starts with the editable lengths:
-        \verb|\templatePosterMargin|, \verb|\templatePosterGap|,
-        \verb|\templatePosterBlockGap|, and \verb|\templatePosterBlockPadding|.
-        Equal column widths are calculated from those settings.
+        [2] B. Researcher. \emph{Example reference on evaluation}.
+        Example Conference, 2025.
         \par\medskip
-        \textbf{Before sharing:} replace the guide text and example values,
-        check the PDF at your chosen size, and confirm everything fits on
-        one page. See \texttt{slides.tex} for more shared examples, including
-        highlighted code with line numbers.
+        [3] C. Collaborator. \emph{Example reference on reproducibility}.
+        Example Workshop, 2026.
+        \par\bigskip
+        \textbf{Project:} \url{https://example.org/project}
+        \par\medskip
+        \textbf{Data:} \url{https://example.org/data}
       \end{colorblock}
     \end{column}
   \end{columns}

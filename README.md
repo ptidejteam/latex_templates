@@ -13,7 +13,7 @@ Matching Beamer templates for **slides** and **research posters**, with Latin Mo
 
 ## Overleaf
 
-Upload both `.tex` files, all three `.sty` files, and the assets you use. In the project settings, select **`slides.tex`** or **`poster.tex`** as the main document and **pdfLaTeX** as the compiler. The packages are available in Overleaf's TeX Live environment; the Makefile and VS Code tasks are only for local builds.
+Upload both `.tex` files, all three `.sty` files, and the assets you use. In the project settings, select **`slides.tex`** or **`poster.tex`** as the main document and **pdfLaTeX** as the compiler. The packages are available in Overleaf's TeX Live environment; the Makefile is only for local builds.
 
 Both sources use optional logos from `assets/logos/`. Replace the paths in `\titlegraphic` with your own PNG, JPG, or PDF images. Missing files are skipped; remove the poster's `\titlegraphic` block to omit its logo row entirely. Prefer vector PDFs or high-resolution originals for print logos and figures. Grey figure placeholders are drawn by LaTeX, so no example image downloads are needed.
 
@@ -29,7 +29,7 @@ make clean-aux # Remove auxiliary files; keep PDFs
 make clean     # Remove all generated files, including PDFs
 ```
 
-PDFs, logs, and auxiliary files stay in the repository root. In VS Code, **Cmd+Shift+B** (macOS) or **Ctrl+Shift+B** (Windows/Linux) builds both templates. **Terminal > Run Build Task** also offers individual slide and poster tasks. No editor extension is required; existing LaTeX extensions can compile either source directly. Check `slides.log` or `poster.log` if compilation fails.
+PDFs, logs, and auxiliary files stay in the repository root. In VS Code, run the commands above in the integrated terminal. Personal VS Code settings and tasks in `.vscode/` are ignored by Git. No editor extension is required; existing LaTeX extensions can compile either source directly. Check `slides.log` or `poster.log` if compilation fails.
 
 Without Make, compile your chosen source twice:
 
@@ -67,7 +67,7 @@ Both use the same two-column layout. Fonts and spacing scale with the page; keep
 | `beamerthemeTemplate.sty` | Slide margins, cover, headings, and page count. |
 | `beamerthemeTemplatePoster.sty` | Poster header, scaled typography, margins, and column spacing. |
 | `assets/logos/` | Example logos; replace with your own. |
-| `Makefile` / `.vscode/tasks.json` | Local builds. |
+| `Makefile` | Local builds. |
 
 Change shared styling once in `beamerCommon.sty` to affect both templates. Layout-specific settings stay in their respective themes. The poster theme's first section holds its margin, column-gap, and block-gap settings; the equal column widths are derived from them. For a separate slide-only project, keep `slides.tex`, `beamerCommon.sty`, `beamerthemeTemplate.sty`, and your assets; for poster-only, use `poster.tex`, `beamerCommon.sty`, `beamerthemeTemplatePoster.sty`, and your assets.
 

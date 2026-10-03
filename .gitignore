@@ -1,5 +1,6 @@
 # Local output and temporary references
 /tmp/
+/.vscode/
 .DS_Store
 
 # Generated files in the project root

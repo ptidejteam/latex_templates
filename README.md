@@ -9,14 +9,14 @@ Matching Beamer slides and research posters with shared fonts, colours, logos, a
 
 ## Compile locally
 
-Install a TeX distribution with pdfLaTeX, Beamer, Latin Modern, booktabs, listings, and beamerposter. From the project directory, run `make` to build both documents, or use the commands above. Without Make, run pdfLaTeX twice on the selected source:
+Install a TeX distribution with pdfLaTeX, Beamer, Latin Modern, booktabs, listings, and beamerposter. SVG logos also require the LaTeX `svg` package and Inkscape on your command path. From the project directory, run `make` to build both documents, or use the commands above. Without Make, run pdfLaTeX twice on the selected source:
 
 ```sh
-pdflatex -interaction=nonstopmode -halt-on-error poster.tex
-pdflatex -interaction=nonstopmode -halt-on-error poster.tex
+pdflatex -shell-escape -interaction=nonstopmode -halt-on-error poster.tex
+pdflatex -shell-escape -interaction=nonstopmode -halt-on-error poster.tex
 ```
 
-Use `slides.tex` for slides. Outputs stay in the project directory. `make clean-aux` removes auxiliary files; `make clean` also removes the generated PDFs. No shell escape or external code highlighter is required.
+Use `slides.tex` for slides. Outputs stay in the project directory. `make clean-aux` removes auxiliary files; `make clean` also removes the generated PDFs. The Makefile enables shell escape for automatic SVG conversion. No external code highlighter is required.
 
 ## Overleaf
 
@@ -43,7 +43,7 @@ Both block types accept an optional colour: `\begin{colorblock*}[turquoise]{Titl
 
 ## Logos and poster size
 
-Set the three logo paths in `\titlegraphic` using `\logobar[height]{concordia}{gina-cody}{conference}`. The bar reserves 25%, 25%, and 50% of its width, with left, left, and right alignment. Missing logo files are skipped. Use PDF, PNG, or JPG; export SVGs to PDF before compiling. See `assets/logos/README.md` for exports.
+Set the three logo paths in `\titlegraphic` using `\logobar[height]{concordia}{gina-cody}{conference}`. The bar reserves 25%, 25%, and 50% of its width, with left, left, and right alignment. Missing logo files are skipped. Each slot accepts PDF, SVG, PNG, or JPG, and formats can be mixed. SVGs are converted automatically with Inkscape; local SVG builds need `-shell-escape` (already enabled by `make`). See `assets/logos/README.md` for the supplied assets.
 
 The poster defaults to portrait A0. Change `size=a0` to `size=a1` in `poster.tex` for A1; keep `scale=1.32`. Print at actual size and review the layout after content changes.
 

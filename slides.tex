@@ -1,4 +1,4 @@
-% Local: run `make slides` or pdfLaTeX twice.
+% Local: run `make slides` or pdfLaTeX -shell-escape twice; SVGs need Inkscape.
 % Overleaf: select slides.tex as the main document and use pdfLaTeX.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usetheme{Template}
@@ -79,9 +79,9 @@
   }
   \medskip
   The optional argument sets the maximum height:
-  \verb|\logobar[10mm]{left.pdf}{middle.pdf}{right.pdf}|.
-  \source{The starter skips missing files. Export SVGs to PDF;
-    keep logo heights below 16\,mm.}
+  \verb|\logobar[10mm]{left.pdf}{middle.svg}{right.png}|.
+  \source{Accepts PDF, SVG, PNG, and JPG; missing files are skipped.
+    Local SVG builds need Inkscape and \texttt{-shell-escape}.}
 \end{frame}
 
 \begin{frame}[fragile]{Contents and sections}

@@ -1,6 +1,6 @@
 # Build both templates by default. Output stays in the repository root.
 PDFLATEX ?= pdflatex
-TEXFLAGS = -interaction=nonstopmode -halt-on-error -file-line-error -synctex=1
+TEXFLAGS = -shell-escape -interaction=nonstopmode -halt-on-error -file-line-error -synctex=1
 DOCUMENTS = slides poster
 GENERATED_EXTENSIONS = aux log nav out pdf snm toc vrb synctex.gz fdb_latexmk fls
 

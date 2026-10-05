@@ -16,3 +16,6 @@
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+
+# Generated SVG conversions
+/svg-inkscape/

@@ -1,43 +1,24 @@
-% TEMPLATE: EDIT THIS FILE
-% Build with `make slides` or Cmd+Shift+B in VS Code; open slides.pdf.
-% This document is both a visual tutorial and a collection of reusable frames.
-% Find a layout in the PDF, search its title here, copy the complete frame,
-% and replace its content. Delete tutorial frames you do not need.
-% Frames displaying literal code use [fragile]. Ordinary slides do not need it.
-% In a verbatim example, append a comment to a literal \end{frame} line
-% so Beamer does not mistake it for the end of the surrounding tutorial frame.
+% Local: run `make slides` or pdfLaTeX twice.
+% Overleaf: select slides.tex as the main document and use pdfLaTeX.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usetheme{Template}
 
-% 1. YOUR COVER ------------------------------------------------------------
 \title{Template: a visual guide}
 \author{Your name}
 \institute{Your team or organisation}
 \date{Presentation date}
 
-% Replace these paths with your logos, or remove this block for an empty strip.
-% Missing logo files do not prevent compilation. Use PNG, JPG, or PDF.
 \titlegraphic{%
-  \IfFileExists{assets/logos/concordia_1.pdf}{%
-    \includegraphics[width=0.52\linewidth,height=10mm,keepaspectratio]{assets/logos/concordia_1.pdf}%
-  }{}%
-  \hfill
-  \IfFileExists{assets/logos/gina_cody-wordmark.pdf}{%
-    \includegraphics[width=0.30\linewidth,height=10mm,keepaspectratio]{assets/logos/gina_cody-wordmark.pdf}%
-  }{}%
+  \logobar
+    {assets/logos/concordia_logo.pdf}
+    {assets/logos/gina_cody-wordmark.pdf}
+    {assets/logos/conference_logo.pdf}%
 }
-
-% Optional settings: uncomment before compiling.
-% \setbeameroption{show notes}              % Include your speaker notes.
-% \setbeamertemplate{note page}[plain]      % Simple notes without a heading.
-% For a handout, add `handout` to the documentclass options above.
-% For 4:3 slides, change aspectratio=169 to aspectratio=43 and review the layout.
 
 \begin{document}
 \maketitle
 \note{Welcome. This PDF explains the layouts that you can copy from slides.tex.}
 
-% 2. START HERE ------------------------------------------------------------
 \section{Start here}
 
 \begin{frame}{How to use this file}
@@ -48,7 +29,7 @@
     \item Delete the tutorial slides and compile your presentation.
   \end{enumerate}
   \takeaway{One source file contains the guide and every example.}
-  \source{Build locally with \texttt{make} or the VS Code build task.\newline
+  \source{Build locally with \texttt{make} or run pdfLaTeX twice.\newline
     In Overleaf, select \texttt{slides.tex} and the pdfLaTeX compiler.}
 \end{frame}
 
@@ -75,7 +56,6 @@
 
 \begin{document}
 \maketitle
-% Your frames go here.
 \end{document}
 \end{verbatim}
     \end{column}
@@ -83,23 +63,25 @@
 \end{frame}
 
 \begin{frame}[fragile]{Cover logos}
-  Replace the \verb|\titlegraphic| block near the top of this file.
-  Keep the image height smaller than the white strip (16\,mm).
+  Replace the three paths in \verb|\titlegraphic| near the top of this file.
+  The bar reserves 25\% for Concordia, 25\% for Gina Cody, and 50\% for the
+  conference. University logos align left; the conference logo aligns right.
   \medskip
   {\small
 \begin{verbatim}
 \titlegraphic{%
-  \includegraphics[width=0.52\linewidth,height=10mm,
-    keepaspectratio]{assets/left-logo.png}%
-  \hfill
-  \includegraphics[width=0.30\linewidth,height=10mm,
-    keepaspectratio]{assets/right-logo.png}%
+  \logobar
+    {assets/logos/concordia_logo.pdf}
+    {assets/logos/gina_cody-wordmark.pdf}
+    {assets/logos/conference_logo.pdf}%
 }
 \end{verbatim}
   }
-  \source{Use your own files at these paths. Keep only one image for a single
-    logo, or remove the block for an empty strip. The supplied starter checks
-    for missing files with \texttt{\textbackslash IfFileExists}.}
+  \medskip
+  The optional argument sets the maximum height:
+  \verb|\logobar[10mm]{left.pdf}{middle.pdf}{right.pdf}|.
+  \source{The starter skips missing files. Export SVGs to PDF;
+    keep logo heights below 16\,mm.}
 \end{frame}
 
 \begin{frame}[fragile]{Contents and sections}
@@ -127,7 +109,6 @@
   \end{columns}
 \end{frame}
 
-% 3. LAYOUTS ---------------------------------------------------------------
 \section{Layouts}
 
 \begin{frame}[fragile]{One clear idea}
@@ -185,8 +166,6 @@
   \end{columns}
 \end{frame}
 
-% All four blocks share the same layout; only the optional colour changes.
-% This example uses a hypothetical research narrative, not reported findings.
 \begin{frame}{Colour by research purpose}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.47\textwidth}
@@ -240,9 +219,6 @@
   \end{columns}
 \end{frame}
 
-% Copy this frame for source code. [fragile] is required for lstlisting.
-% Change language=Java for another language supported by listings.
-% The shared highlighting style lives in beamerCommon.sty.
 \begin{frame}[fragile]{Java code with highlighting}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.56\textwidth}
@@ -279,12 +255,8 @@ public class Hello {
 
 \end{frame}
 
-% 4. EVIDENCE --------------------------------------------------------------
 \section{Evidence}
 
-% This is the actual divider demonstrated on the contents slide.
-% Both options are intentional: plain hides the footer; noframenumbering
-% excludes the divider from the total.
 \begin{frame}[plain,noframenumbering]
   \sectionpage
 \end{frame}
@@ -322,8 +294,6 @@ public class Hello {
 \source{A concise caption.}
 \end{verbatim}
   }
-  % For a real figure, replace the placeholder with:
-  % \includegraphics[width=\linewidth,height=4cm,keepaspectratio]{assets/figure.pdf}
 \end{frame}
 
 \begin{frame}[fragile]{Key numbers}
@@ -443,10 +413,8 @@ A claim~\cite{demo}.
   \end{columns}
 \end{frame}
 
-% 5. PRESENTING ------------------------------------------------------------
 \section{Presenting}
 
-% This example creates three PDF pages but counts as one frame.
 \begin{frame}[fragile]{Gradual reveals}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.42\textwidth}
@@ -518,7 +486,6 @@ A claim~\cite{demo}.
   \end{columns}
 \end{frame}
 
-% Copy this entire frame as a closing slide; replace its text and contact.
 \begin{frame}{A closing slide}
   \noindent{\large\color{templatePrimary}Your main conclusion in one sentence}
   \bigskip
@@ -529,7 +496,6 @@ A claim~\cite{demo}.
   \source{Your name \quad\texttt{you@example.org}}
 \end{frame}
 
-% 6. THEME AND TROUBLESHOOTING ---------------------------------------------
 \section{Theme}
 
 \begin{frame}[fragile]{Colours}

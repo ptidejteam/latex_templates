@@ -1,54 +1,45 @@
-% TEMPLATE: edit this file; build with `make poster`; open poster.pdf.
+% Local: run `make poster` or pdfLaTeX twice.
+% Overleaf: select poster.tex as the main document and use pdfLaTeX.
 \documentclass[11pt]{beamer}
 \usepackage[orientation=portrait,size=a0,scale=1.32]{beamerposter}
 \usetheme{TemplatePoster}
 
-% 1. YOUR HEADER -----------------------------------------------------------
 \title{Template: a research poster example}
 \author{Your name \and Your collaborator}
 \institute{Your research team --- Your university or organisation}
 \date{Conference name and date}
 
 \titlegraphic{%
-  \IfFileExists{assets/logos/concordia_1.pdf}{%
-    \includegraphics[width=0.40\linewidth,height=0.04\paperheight,keepaspectratio]{assets/logos/concordia_1.pdf}%
-  }{}%
-  \hfill
-  \IfFileExists{assets/logos/gina_cody-wordmark.pdf}{%
-    \includegraphics[width=0.27\linewidth,height=0.04\paperheight,keepaspectratio]{assets/logos/gina_cody-wordmark.pdf}%
-  }{}%
+  \logobar[0.04\paperheight]
+    {assets/logos/concordia_logo.pdf}
+    {assets/logos/gina_cody-wordmark.pdf}
+    {assets/logos/conference_logo.pdf}%
 }
 
 \begin{document}
 \begin{frame}[fragile,t]
-  \begin{columns}[T,onlytextwidth]
+  \begin{colorblock}{1. Context and research gap}
+    Reliable comparisons depend on clear questions, consistent
+    measurements, and a shared view of the study. This example follows
+    a simple workflow from data collection to evaluation.
+    \begin{figure}
+      \figureplaceholder[0.26\linewidth]{Study overview}
+      \caption{An overview of the research context and workflow.}
+    \end{figure}
+  \end{colorblock}
 
-    % 2. LEFT COLUMN -------------------------------------------------------
-    \begin{column}{\templatePosterColumnWidth}
-      \begin{colorblock}{1. Context and research gap}
-        Reliable comparisons depend on clear questions, consistent
-        measurements, and a shared view of the study. This example follows
-        a simple workflow from data collection to evaluation.
-        \begin{figure}
-          \figureplaceholder[0.34\linewidth]{Study overview}
-          \caption{An overview of the research context and workflow.}
-        \end{figure}
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
+  \begin{colorblock}{2. Research questions}
+    How can a simple approach improve the quality and efficiency of a
+    research workflow? The study has three goals:
+    \begin{itemize}
+      \item Establish a reproducible baseline.
+      \item Compare the proposed approach under the same conditions.
+      \item Identify limitations and opportunities for further study.
+    \end{itemize}
+  \end{colorblock}
 
-      \begin{colorblock}{2. Research questions}
-        How can a simple approach improve the quality and efficiency of a
-        research workflow? The study has three goals:
-        \begin{itemize}
-          \item Establish a reproducible baseline.
-          \item Compare the proposed approach under the same conditions.
-          \item Identify limitations and opportunities for further study.
-        \end{itemize}
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
-
-      \begin{colorblock}{3. Method}
-        This Java method computes the mean of a set of values.
+  \begin{colorblock}{3. Method}
+    This Java method computes the mean of a set of values.
 \begin{lstlisting}[language=Java,xleftmargin=2em]
 public static double mean(double[] values) {
     if (values.length == 0) {
@@ -61,83 +52,76 @@ public static double mean(double[] values) {
     return sum / values.length;
 }
 \end{lstlisting}
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
+  \end{colorblock}
 
-      \begin{colorblock}{4. Visual overview}
-        \figureplaceholder[0.78\linewidth]{Main research figure}
-      \end{colorblock}
-    \end{column}
-    \hfill
+  \begin{colorblock*}{4. Visual overview}
+    \begin{figure}
+      \figureplaceholder[0.075\paperheight]{Main research figure}
+      \caption{An overview of the research workflow.}
+    \end{figure}
+  \end{colorblock*}
 
-    % 3. RIGHT COLUMN ------------------------------------------------------
-    \begin{column}{\templatePosterColumnWidth}
-      \begin{colorblock}{5. Comparison}
-        Two views show how the baseline and proposed approach differ.
-        Both use the same dataset and evaluation conditions.
-        \begin{figure}
-          \begin{minipage}[t]{0.48\linewidth}
-            \figureplaceholder[0.90\linewidth]{Baseline}
-            \caption{The reference approach.}
-          \end{minipage}\hfill
-          \begin{minipage}[t]{0.48\linewidth}
-            \figureplaceholder[0.90\linewidth]{Proposed approach}
-            \caption{The proposed approach.}
-          \end{minipage}
-        \end{figure}
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
+  \begin{colorblock}{5. Comparison}
+    Two views show how the baseline and proposed approach differ.
+    Both use the same dataset and evaluation conditions.
+    \begin{figure}
+      \begin{minipage}[t]{0.48\linewidth}
+        \figureplaceholder[0.65\linewidth]{Baseline}
+        \caption{The reference approach.}
+      \end{minipage}\hfill
+      \begin{minipage}[t]{0.48\linewidth}
+        \figureplaceholder[0.65\linewidth]{Proposed approach}
+        \caption{The proposed approach.}
+      \end{minipage}
+    \end{figure}
+  \end{colorblock}
 
-      \begin{colorblock}{6. Results}
-        The proposed approach achieves a higher score with a shorter run
-        time in this illustrative comparison.
-        \begin{table}
-          \centering
-          \begin{tabular}{@{}lrr@{}}
-            \toprule
-            \textbf{Method} & \textbf{Score} & \textbf{Time (s)} \\
-            \midrule
-            Baseline & 0.72 & 12.4 \\
-            Variant A & 0.78 & 11.6 \\
-            Variant B & 0.81 & 10.8 \\
-            \textbf{Proposed} & \textbf{0.86} & \textbf{9.7} \\
-            \bottomrule
-          \end{tabular}
-          \caption{Illustrative data only; higher scores and shorter times are better.}
-        \end{table}
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
+  \begin{colorblock}{6. Results}
+    The proposed approach achieves a higher score with a shorter run
+    time in this illustrative comparison.
+    \begin{table}
+      \centering
+      \begin{tabular}{@{}lrr@{}}
+        \toprule
+        \textbf{Method} & \textbf{Score} & \textbf{Time (s)} \\
+        \midrule
+        Baseline & 0.72 & 12.4 \\
+        Variant A & 0.78 & 11.6 \\
+        Variant B & 0.81 & 10.8 \\
+        \textbf{Proposed} & \textbf{0.86} & \textbf{9.7} \\
+        \bottomrule
+      \end{tabular}
+      \caption{Illustrative data only; higher scores and shorter times are better.}
+    \end{table}
+  \end{colorblock}
 
-      \begin{colorblock}{7. Key findings}
-        \textbf{Main finding.} The illustrative comparison shows
-        \textcolor{turquoise}{\textbf{higher scores}} alongside shorter run
-        times. Quality and efficiency can be considered together.
-        \par\medskip
-        \textbf{Why it matters.} Meaningful comparisons use
-        \emph{the same data, budget, and evaluation rules}. A reproducible
-        baseline makes differences easier to interpret.
-        \par\medskip
-        \textbf{Next step.} Evaluate the approach on
-        \alert{larger, independent datasets} and report uncertainty
-        before drawing broader conclusions.
-      \end{colorblock}
-      \vspace{\templatePosterBlockGap}
+  \begin{colorblock}{7. Key findings}
+    \textbf{Main finding.} The illustrative comparison shows
+    \textcolor{turquoise}{\textbf{higher scores}} alongside shorter run
+    times. Quality and efficiency can be considered together.
+    \par\medskip
+    \textbf{Why it matters.} Meaningful comparisons use
+    \emph{the same data, budget, and evaluation rules}. A reproducible
+    baseline makes differences easier to interpret.
+    \par\medskip
+    \textbf{Next step.} Evaluate the approach on
+    \alert{larger, independent datasets} and report uncertainty
+    before drawing broader conclusions.
+  \end{colorblock}
 
-      \begin{colorblock}{8. References and links}
-        [1] A. Author. \emph{Example reference on research methods}.
-        Example Journal, 2024.
-        \par\medskip
-        [2] B. Researcher. \emph{Example reference on evaluation}.
-        Example Conference, 2025.
-        \par\medskip
-        [3] C. Collaborator. \emph{Example reference on reproducibility}.
-        Example Workshop, 2026.
-        \par\bigskip
-        \textbf{Project:} \url{https://example.org/project}
-        \par\medskip
-        \textbf{Data:} \url{https://example.org/data}
-      \end{colorblock}
-    \end{column}
-  \end{columns}
+  \begin{colorblock}{8. References and links}
+    [1] A. Author. \emph{Example reference on research methods}.
+    Example Journal, 2024.
+    \par\medskip
+    [2] B. Researcher. \emph{Example reference on evaluation}.
+    Example Conference, 2025.
+    \par\medskip
+    [3] C. Collaborator. \emph{Example reference on reproducibility}.
+    Example Workshop, 2026.
+    \par\bigskip
+    \textbf{Project:} \url{https://example.org/project}
+    \par\medskip
+    \textbf{Data:} \url{https://example.org/data}
+  \end{colorblock}
 \end{frame}
 \end{document}

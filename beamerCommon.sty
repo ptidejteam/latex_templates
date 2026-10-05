@@ -1,21 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerCommon}[2026/10/03 Shared Template colours, fonts, and helpers]
 
-% Edit this file to change both templates. Layouts live in the two themes.
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
 
-% 1. PALETTE ---------------------------------------------------------------
-% Research roles: gaps, answers, questions, and general highlights.
-% Original burgundy retained; other accent colours from:
-% https://www.concordia.ca/web/design/ui-kit-style-guide-accessibility/web-palette-new.html
 \definecolor{burgundy}{HTML}{7A003C}
 \definecolor{orange}{HTML}{DA3A16}
 \definecolor{turquoise}{HTML}{057D78}
 \definecolor{darkblue}{HTML}{004085}
-% Theme aliases keep the cover, headings, and helpers consistent.
 \colorlet{templatePrimary}{burgundy}
 \colorlet{templateSecondary}{turquoise}
 \definecolor{templateInk}{HTML}{222222}
@@ -41,8 +35,6 @@
 \setbeamercolor{placeholder}{fg=templateMuted,bg=templateInk!5!templatePaper}
 \setbeamercolor{page number in head/foot}{fg=templateMuted,bg=templatePaper}
 
-% 2. TYPE ------------------------------------------------------------------
-% The base size (11pt by default) belongs in the documentclass in slides.tex.
 \usefonttheme{professionalfonts}
 \setbeamerfont{title}{size=\LARGE,series=\bfseries}
 \setbeamerfont{subtitle}{size=\large,series=\mdseries}
@@ -59,15 +51,12 @@
 \setbeamerfont{takeaway}{size=\normalsize}
 \setbeamerfont{source}{size=\scriptsize}
 
-% Helper defaults retain the slide appearance; the poster theme scales them.
 \setbeamerfont{metric}{size*={24}{27},series=\bfseries}
 \newlength{\templateBoxPadding}
 \newlength{\templateFigureHeight}
 \setlength{\templateBoxPadding}{2mm}
 \setlength{\templateFigureHeight}{3.2cm}
 
-% Syntax highlighting uses listings, so no external highlighter is needed.
-% Select the language on each listing: \begin{lstlisting}[language=Java]
 \lstdefinestyle{template}{
   basicstyle=\ttfamily\footnotesize\color{templateInk},
   keywordstyle=\color{darkblue}\bfseries,
@@ -98,12 +87,32 @@
 \setbeamertemplate{section in toc}[sections numbered]
 \setbeamertemplate{blocks}[default]
 
-% 3. OPTIONAL HELPERS -------------------------------------------------------
-% All helpers fit the current \linewidth, so they also work inside columns.
+\newlength{\templateLogoGap}
+\newcommand{\logobar}[4][10mm]{%
+  \begingroup
+  \setlength{\templateLogoGap}{0.0253\linewidth}%
+  \begin{minipage}[c]{0.25\linewidth}
+    \raggedright
+    \IfFileExists{#2}{%
+      \includegraphics[width=\dimexpr\linewidth-\templateLogoGap\relax,
+        height=#1,keepaspectratio]{#2}%
+    }{}%
+  \end{minipage}%
+  \begin{minipage}[c]{0.25\linewidth}
+    \raggedright
+    \IfFileExists{#3}{%
+      \includegraphics[width=0.96\linewidth,height=#1,keepaspectratio]{#3}%
+    }{}%
+  \end{minipage}%
+  \begin{minipage}[c]{0.50\linewidth}
+    \raggedleft
+    \IfFileExists{#4}{%
+      \includegraphics[width=0.40\linewidth,height=#1,keepaspectratio]{#4}%
+    }{}%
+  \end{minipage}%
+  \endgroup
+}
 
-% One block layout, with an optional xcolor name; burgundy is the default.
-% Local grouping keeps a block's colours from affecting the next block.
-% Beamer overlays also work: \begin{colorblock}<2->[orange]{Research gap}
 \newenvironment<>{colorblock}[2][burgundy]{%
   \begingroup
   \setbeamercolor{block title}{fg=white,bg=#1}%

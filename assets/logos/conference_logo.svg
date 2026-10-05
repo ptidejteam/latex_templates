@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="217.80893mm"
+   height="109.32515mm"
+   viewBox="0 0 217.80893 109.32515"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="conference_logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0164632"
+     inkscape:cx="394.50518"
+     inkscape:cy="253.32939"
+     inkscape:window-width="2560"
+     inkscape:window-height="1318"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:page
+       x="0"
+       y="2.4380097e-06"
+       width="217.80893"
+       height="109.32516"
+       id="page1"
+       margin="0 0 0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.52059597,-81.473271)">
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';writing-mode:lr-tb;direction:ltr;fill:#800000;stroke-width:0.264583"
+       x="15.357581"
+       y="125.72392"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;font-family:'Gill Sans';-inkscape-font-specification:'Gill Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="15.357581"
+         y="125.72392">Conference </tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;font-family:'Gill Sans';-inkscape-font-specification:'Gill Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="15.357581"
+         y="161.00168"
+         id="tspan2">Logo</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="fill:#800000;stroke-width:0.264583"
+       id="path7"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="154.3567"
+       sodipodi:cy="147.84926"
+       sodipodi:r1="8.975564"
+       sodipodi:r2="7.2485461"
+       sodipodi:arg1="0.51554901"
+       sodipodi:arg2="0.95260716"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 162.16564,152.27432 -3.60796,1.48199 -5.99637,2.88711 -2.52437,-2.97342 -4.59879,-4.81072 2.04782,-3.31966 3.15416,-5.86029 3.79,0.92175 6.54816,1.18886 0.29453,3.88934 z"
+       inkscape:transform-center-x="1.0728195"
+       inkscape:transform-center-y="0.55156262"
+       transform="matrix(1.9336652,0,0,1.7672026,-127.46101,-105.34027)" />
+    <path
+       sodipodi:type="star"
+       style="fill:#800000;stroke-width:0.264583"
+       id="path1"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="142.383"
+       sodipodi:cy="146.54777"
+       sodipodi:r1="10.257855"
+       sodipodi:r2="8.2841072"
+       sodipodi:arg1="0.62319933"
+       sodipodi:arg2="1.2515179"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 150.71253,152.53463 -5.72931,1.87859 -5.72009,1.90645 -3.5571,-4.86837 -3.58076,-4.85101 3.5309,-4.88742 3.50707,-4.90454 5.73932,1.84779 5.74824,1.81984 0.0162,6.02941 z"
+       inkscape:transform-center-x="0.96409232"
+       inkscape:transform-center-y="0.016227035" />
+  </g>
+</svg>

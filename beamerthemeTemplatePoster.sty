@@ -2,9 +2,6 @@
 \ProvidesPackage{beamerthemeTemplatePoster}[2026/10/03 Template portrait poster layout]
 \RequirePackage{beamerCommon}
 
-% Load beamerposter before this theme. Its size option scales the fonts.
-% All page dimensions below scale with A0/A1; no second layout is needed.
-% 1. POSTER SPACING --------------------------------------------------------
 \newlength{\templatePosterMargin}
 \newlength{\templatePosterGap}
 \newlength{\templatePosterColumnWidth}
@@ -19,7 +16,6 @@
 \setbeamersize{text margin left=\templatePosterMargin,
   text margin right=\templatePosterMargin}
 
-% Same font family and hierarchy; sizes come from beamerposter's scale.
 \setbeamerfont{title}{size=\Huge}
 \setbeamerfont{author}{size=\large}
 \setbeamerfont{institute}{size=\normalsize}
@@ -33,14 +29,9 @@
 }
 \setlength{\templateBoxPadding}{0.006\paperwidth}
 \setlength{\templateFigureHeight}{0.18\paperheight}
-% Scale listing decorations too, if code is added to a fragile poster frame.
 \lstset{framesep=0.5em,numbersep=0.5em,xleftmargin=0.5em,
   xrightmargin=0.5em,framerule=0.025em}
 
-% 2. POSTER BLOCK PADDING --------------------------------------------------
-% A minipage gives paragraphs, lists, tables, and figures the same inner width.
-% Colour and font definitions still come from the shared style. One layout
-% serves native block/exampleblock/alertblock and the colour-parameter helper.
 \newcommand{\templatePosterBlockBegin}[2]{%
   \par\vskip\medskipamount
   \begin{beamercolorbox}[wd=\linewidth,sep=\templatePosterBlockPadding]{#1}
@@ -67,8 +58,55 @@
 \setbeamertemplate{block alerted begin}{\templatePosterBlockBegin{block title alerted}{block body alerted}}
 \setbeamertemplate{block alerted end}{\templatePosterBlockEnd}
 
-% 3. HEADER ---------------------------------------------------------------
-% Standard metadata commands supply the header; no separate title frame.
+\RequirePackage{etoolbox}
+\let\templatePosterColorBlock\colorblock
+\let\endtemplatePosterColorBlock\endcolorblock
+\newsavebox{\templatePosterPendingBox}
+\newsavebox{\templatePosterCurrentBox}
+\newif\iftemplatePosterPending
+
+\newcommand{\templatePosterFlushBlocks}{%
+  \iftemplatePosterPending
+    \par\noindent\usebox{\templatePosterPendingBox}\par
+    \vspace{\templatePosterBlockGap}%
+    \global\templatePosterPendingfalse
+  \fi
+}
+\AtBeginEnvironment{beamer@frameslide}{\global\templatePosterPendingfalse}
+\AtEndEnvironment{beamer@frameslide}{\templatePosterFlushBlocks}
+
+\renewenvironment{colorblock}[2][burgundy]{%
+  \begin{lrbox}{\templatePosterCurrentBox}%
+    \begin{minipage}[t]{\templatePosterColumnWidth}
+      \vspace{0pt}%
+      \begin{templatePosterColorBlock}[#1]{#2}%
+}{%
+      \end{templatePosterColorBlock}%
+    \end{minipage}%
+  \end{lrbox}%
+  \iftemplatePosterPending
+    \par\noindent\usebox{\templatePosterPendingBox}%
+    \hspace*{\templatePosterGap}\usebox{\templatePosterCurrentBox}\par
+    \vspace{\templatePosterBlockGap}%
+    \global\templatePosterPendingfalse
+  \else
+    \global\setbox\templatePosterPendingBox=\copy\templatePosterCurrentBox
+    \global\templatePosterPendingtrue
+  \fi
+  \ignorespacesafterend
+}
+\newenvironment{colorblock*}[2][burgundy]{%
+  \templatePosterFlushBlocks
+  \par\noindent\begin{minipage}[t]{\textwidth}
+    \vspace{0pt}%
+    \begin{templatePosterColorBlock}[#1]{#2}%
+}{%
+    \end{templatePosterColorBlock}%
+  \end{minipage}\par
+  \vspace{\templatePosterBlockGap}%
+  \ignorespacesafterend
+}
+
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{sidebar right}{}
 \setbeamertemplate{footline}{}
